@@ -10,6 +10,7 @@ const Navbar = () => {
         <p className=" text-[#F5F5F5] text-m font-semibold">Home</p>
         <p className=" text-white text-m font-semibold">Wishlist</p>
         <p className=" text-white text-m font-semibold">More</p>
+
         <CartIcon fill="#F5F5F5" height="25px"/>
       </div>
     </div>
