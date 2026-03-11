@@ -6,10 +6,10 @@ const ProductCard=({data})=>{
 
     const actualprice=Math.round(price-((price*discountPercentage)/100))/100;
     return(
-      <div className="max-w-xs h-auto">
+      <div className="max-w-s h-auto">
      <div className="relative border-2 border-solid  bg-[#EFEBE9] rounded-xl border-gray-300">
       <div className="absolute top-2.5 right-4 h-[30px] w-[30px]"><Wishlist fill="Red"/></div>
-      <div className="bg-white flex justify-center">
+      <div className="bg-white flex justify-center overflow-hidden">
         <img className="h-40 w-auto "src={thumbnail} alt="" />
       </div>
       <p className="font-semibold text-sm pl-2">{category}</p>

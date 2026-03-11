@@ -3,15 +3,26 @@ import { useState} from "react";
 import ProductCard from "./ProductCard";
 const ProductGrid=()=>{
     const[products,setProducts]=useState([]);
+    const[currentpage,setCurrentPage]=useState(1);
+    const[Error,setError]=useState(false);
     async function getData(){
-        const productData= await fetch(`https://dummyjson.com/products`)
+      try{
+         const limit=15;
+         const skip=(currentpage-1)*limit;
+        const productData= await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`)
         const jsonData=await productData.json();
         console.log(jsonData);
         setProducts(jsonData.products);
+      }catch(err){
+         setError(true);
+
+      }
     }
     useEffect(()=>{
        getData();
-    },[])
+    },[currentpage])
+    const check="join-item btn bg-blue-500 btn-square";
+    const uncheck="join-item btn btn-square";
     return(
      <div className="mb-2">
         <div className="grid grid-cols-4 gap-4 mt-1 ml-2 mr-2 mb-2 bg-blue-50">{
@@ -20,17 +31,32 @@ const ProductGrid=()=>{
         })
      }
      </div>
-     <div className="mb-2 ">
+     <div className="mb-2 flex justify-center">
         <div className="join  grid-cols-4 text-center">
   <input
-    className="join-item btn btn-square"
+  onClick={()=>{
+     setCurrentPage(1)
+  }}
+    className={currentpage==1 ? check:uncheck}
     type="radio"
     name="options"
     aria-label="1"
-    checked="checked" />
-  <input className="join-item btn btn-square" type="radio" name="options" aria-label="2" />
-  <input className="join-item btn btn-square" type="radio" name="options" aria-label="3" />
-  <input className="join-item btn btn-square" type="radio" name="options" aria-label="4" />
+     />
+  <input 
+  onClick={()=>{
+     setCurrentPage(2)
+  }}
+  className={currentpage==2 ? check:uncheck} type="radio" name="options" aria-label="2" />
+  <input 
+  onClick={()=>{
+     setCurrentPage(3)
+  }}
+  className={currentpage==3 ? check:uncheck} type="radio" name="options" aria-label="3" />
+  <input 
+  onClick={()=>{
+     setCurrentPage(4)
+  }}
+  className={currentpage==4 ? check:uncheck} type="radio" name="options" aria-label="4" />
 </div>
      </div>
      </div>
