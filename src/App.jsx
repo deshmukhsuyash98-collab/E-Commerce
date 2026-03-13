@@ -1,8 +1,11 @@
 import './App.css'
 import Home from './Screen/Home'
+import ThemeProvider from './Store/ThemeProvider'
 function App() {
   return (
-      <><Home/></>
+      <ThemeProvider>
+        <Home/>
+        </ThemeProvider>
   )
 }
 export default App

@@ -1,15 +1,19 @@
 import React from "react";
 import Rating from "../Icons/Rating";
 import Wishlist from "../Icons/Wishlist";
+import { ThemeContext } from "../Store/ThemeProvider";
+import { useContext } from "react";
 const ProductCard=({data})=>{
     const{title,category,price,rating,thumbnail,brand,discountPercentage}=data;
-
+    const{theme,setTheme}=useContext(ThemeContext);
     const actualprice=Math.round(price-((price*discountPercentage)/100))/100;
+    const light="relative border-2 border-solid  bg-[#EFEBE9] rounded-xl border-gray-300";
+    const dark="relative border-2 border-solid  bg-gray-300 rounded-xl border-gray-300"
     return(
       <div className="max-w-s h-auto">
-     <div className="relative border-2 border-solid  bg-[#EFEBE9] rounded-xl border-gray-300">
+     <div className={theme=="light"?light:dark}>
       <div className="absolute top-2.5 right-4 h-[30px] w-[30px]"><Wishlist fill="Red"/></div>
-      <div className="bg-white flex justify-center overflow-hidden">
+      <div className={theme=="light"?"bg-white flex justify-center overflow-hidden":"bg-gray-200 flex justify-center overflow-hidden"}>
         <img className="h-40 w-auto "src={thumbnail} alt="" />
       </div>
       <p className="font-semibold text-sm pl-2">{category}</p>
