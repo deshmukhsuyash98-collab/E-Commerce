@@ -5,17 +5,17 @@ import DarkMode from "../Icons/DarkMode";
 import LightMode from "../Icons/LightMode";
 import { useContext } from "react";
 import { ThemeContext } from "../Store/ThemeProvider";
-const Navbar = () => {
+import { Link } from "react-router-dom";
+const Navbar = ({hideSearchBar=false}) => {
   const { theme, setTheme } = useContext(ThemeContext);
-  console.log(theme);
   const light =
     "size-12 w-full bg-blue-300 mt-0.5 items-center flex justify-between pr-3 pl-3";
   const dark =
     "size-12 w-full bg-gray-700 mt-0.5 items-center flex justify-between pr-3 pl-3";
   return (
     <div className={theme == "light" ? light : dark}>
-      <p className="font-semibold text-xl text-white ">CartNova</p>
-      <SearchBar />
+      <Link to={`/`} className="font-semibold text-xl text-white ">CartNova</Link>
+       <SearchBar />
       <div className="w-1/4 flex justify-around">
         <p className=" text-[#F5F5F5] text-m font-semibold">Home</p>
         <p className=" text-white text-m font-semibold">Wishlist</p>
