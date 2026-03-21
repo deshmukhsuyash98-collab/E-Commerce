@@ -7,13 +7,14 @@ import{Link} from 'react-router-dom'
 const ProductCard=({data})=>{
     const{title,category,price,rating,thumbnail,brand,discountPercentage,id}=data;
     const{theme,setTheme}=useContext(ThemeContext);
-    const actualprice=Math.round(price-((price*discountPercentage)/100))/100;
+    const actualprice=(price-((price*discountPercentage)/100)).toFixed(2);
     const light="relative border-2 border-solid  bg-[#EFEBE9] rounded-xl border-gray-300";
     const dark="relative border-2 border-solid  bg-gray-300 rounded-xl border-gray-300"
     return(
       <div className="max-w-s h-auto">
-     <Link to={`/products/:${id}`} className={theme=="light"?light:dark}>
-      <div className="absolute top-2.5 right-4 h-[30px] w-[30px]"><Wishlist fill="Red"/></div>
+     <div className={theme=="light"?light:dark}>
+      <div className="absolute top-2.5 right-4 h-[30px] w-[30px] z-10"><Wishlist fill="Red"/></div>
+      <Link to={`/products/${id}`} className="block">
       <div className={theme=="light"?"bg-white flex justify-center overflow-hidden":"bg-gray-200 flex justify-center overflow-hidden"}>
         <img className="h-40 w-auto "src={thumbnail} alt="" />
       </div>
@@ -30,11 +31,12 @@ const ProductCard=({data})=>{
         <p className="align-middle font-semibold text-sm">{rating}</p>
         </div>
       </div>
+      </Link>
       <div className="flex justify-between align-middle mb-3">
         <button className="pl-5 pr-5 border-2 border-solid rounded-xl mt-2 ml-2 hover:bg-teal-200">Add to Cart</button>
          <button className=" pr-5 border-2 border-none rounded-xl mt-2 pl-5 mr-2 bg-amber-400 font-semibold border-lime-400 hover:bg-amber-300 ">Buy Now</button>
       </div>
-     </Link>
+     </div>
      </div>
     )
 }

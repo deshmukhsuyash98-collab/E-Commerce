@@ -14,7 +14,7 @@ const ProductGrid=()=>{
          const skip=(currentpage-1)*limit;
         const productData= await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`)
         const jsonData=await productData.json();
-        console.log(jsonData);
+      //   console.log(jsonData);
         setProducts(jsonData.products);
       }catch(err){
          setError(true);

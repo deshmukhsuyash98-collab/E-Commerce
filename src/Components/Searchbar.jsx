@@ -1,5 +1,6 @@
 import React from "react";
 import {useState,useEffect,useRef} from "react";
+import { Link } from "react-router-dom";
 const SearchBar=()=>{
     const[query,setQuery]=useState("");
     const[searchSuggestion,setSearchSuggestion]=useState([]);
@@ -29,10 +30,10 @@ const SearchBar=()=>{
     {Suggestions && <div className="bg-gray-200 mt-1 rounded-xl pt-2 pb-2 z-15">
         {searchSuggestion.map((pObj)=>{
             return(
-                <div className="rounded-lg bg-[#F9FAFB] mb-2 mt-1 ml-3 mr-3 pr-2 pl-2 border-1 flex items-center gap-6">
+                <Link to={`/products/${pObj.id}`} className="rounded-lg bg-[#F9FAFB] mb-2 mt-1 ml-3 mr-3 pr-2 pl-2 border-1 flex items-center gap-6">
                     <img src={pObj.thumbnail} className="h-5 w-5 bg-white"/>
                     <p className="text-[#111827] pr-3 pt-2">{pObj.title}</p>
-                </div>
+                </Link>
             )
         })}
         </div>}

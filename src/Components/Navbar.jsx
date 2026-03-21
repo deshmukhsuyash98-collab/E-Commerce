@@ -15,7 +15,7 @@ const Navbar = ({hideSearchBar=false}) => {
   return (
     <div className={theme == "light" ? light : dark}>
       <Link to={`/`} className="font-semibold text-xl text-white ">CartNova</Link>
-       <SearchBar />
+      {!hideSearchBar && <SearchBar />}
       <div className="w-1/4 flex justify-around">
         <p className=" text-[#F5F5F5] text-m font-semibold">Home</p>
         <p className=" text-white text-m font-semibold">Wishlist</p>
